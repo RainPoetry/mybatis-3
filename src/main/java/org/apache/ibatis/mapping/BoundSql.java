@@ -35,8 +35,13 @@ import org.apache.ibatis.session.Configuration;
  */
 public class BoundSql {
 
+  // 基本
   private final String sql;
+  // 参数的详细信息：参数名、类型、jdbc类型
+  // 在解析 sql 语句，将 #{}  转换为 ? 的时候实现的
+  // 因为是集合，可以通过 ParameterMapping 反推 对应的 ? 的位置
   private final List<ParameterMapping> parameterMappings;
+  // 接口的动态传参， Map 形式
   private final Object parameterObject;
   private final Map<String, Object> additionalParameters;
   private final MetaObject metaParameters;

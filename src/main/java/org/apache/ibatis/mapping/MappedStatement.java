@@ -1,5 +1,5 @@
 /**
- *    Copyright 2009-2020 the original author or authors.
+ *    Copyright 2009-2021 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -30,16 +30,22 @@ import org.apache.ibatis.session.Configuration;
 
 /**
  * @author Clinton Begin
+ *
+ *  select 上的配置信息
  */
 public final class MappedStatement {
 
+  // statement 所在
   private String resource;
+  // 全局配置
   private Configuration configuration;
+  // 节点对应的 id 属性
   private String id;
   private Integer fetchSize;
   private Integer timeout;
   private StatementType statementType;
   private ResultSetType resultSetType;
+  // SQL 存放地
   private SqlSource sqlSource;
   private Cache cache;
   private ParameterMap parameterMap;
@@ -47,6 +53,7 @@ public final class MappedStatement {
   private boolean flushCacheRequired;
   private boolean useCache;
   private boolean resultOrdered;
+  // 节点的类型
   private SqlCommandType sqlCommandType;
   private KeyGenerator keyGenerator;
   private String[] keyProperties;
@@ -54,6 +61,7 @@ public final class MappedStatement {
   private boolean hasNestedResultMaps;
   private String databaseId;
   private Log statementLog;
+  // XMLLanguageDriver
   private LanguageDriver lang;
   private String[] resultSets;
 

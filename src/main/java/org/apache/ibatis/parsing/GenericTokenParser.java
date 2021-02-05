@@ -1,5 +1,5 @@
 /**
- *    Copyright 2009-2020 the original author or authors.
+ *    Copyright 2009-2021 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -36,12 +36,14 @@ public class GenericTokenParser {
     }
     // search open token
     int start = text.indexOf(openToken);
+    // 不存在 ${ ，直接返回
     if (start == -1) {
       return text;
     }
     char[] src = text.toCharArray();
     int offset = 0;
     final StringBuilder builder = new StringBuilder();
+    // 被 ${} 包裹的符号
     StringBuilder expression = null;
     do {
       if (start > 0 && src[start - 1] == '\\') {
@@ -55,9 +57,13 @@ public class GenericTokenParser {
         } else {
           expression.setLength(0);
         }
+        // ${ 之前的数据填充
         builder.append(src, offset, start - offset);
+        // ${
         offset = start + openToken.length();
+        // } 结束的位置
         int end = text.indexOf(closeToken, offset);
+        //
         while (end > -1) {
           if (end > offset && src[end - 1] == '\\') {
             // this close token is escaped. remove the backslash and continue.
@@ -74,10 +80,13 @@ public class GenericTokenParser {
           builder.append(src, start, src.length - start);
           offset = src.length;
         } else {
+          // 替换掉现有符号
           builder.append(handler.handleToken(expression.toString()));
           offset = end + closeToken.length();
         }
       }
+
+      // 重新找下一个 ${
       start = text.indexOf(openToken, offset);
     } while (start > -1);
     if (offset < src.length) {
