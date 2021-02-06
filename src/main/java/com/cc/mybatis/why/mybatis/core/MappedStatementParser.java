@@ -43,6 +43,9 @@ import org.apache.ibatis.session.Configuration;
  *        将 <类+方法名，MappedStatement>  注册到 Configuration 中
  *
  *    MappedStatement 通过 id 或者 类名+方法名 获取
+ *
+ *
+ *    MappedStatement 是在 Configuration 实例化的时候就创建好的
  */
 
 public class MappedStatementParser {

@@ -43,6 +43,7 @@ public final class MappedStatement {
   private String id;
   private Integer fetchSize;
   private Integer timeout;
+  // 默认： PREPARED
   private StatementType statementType;
   private ResultSetType resultSetType;
   // SQL 存放地
